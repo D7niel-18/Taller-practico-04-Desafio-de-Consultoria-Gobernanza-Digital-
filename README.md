@@ -1,10 +1,5 @@
-- ## Profesor: Willman Acosta
- 
 - ## Actividad: Desafío de Consultoría "Gobernanza Digital"
-
-- Alumnos: Daniel Jiménez Ramírez, Pepe Gil Cué, Manuel Parrilla
-
----
+- # Profesor Wilman Acosta | Lenguaje de Marca  
 
 ## Bloque A: Análisis de Mercado y Selección (CE a, c)
 
