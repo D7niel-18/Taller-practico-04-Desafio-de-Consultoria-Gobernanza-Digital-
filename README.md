@@ -54,71 +54,41 @@ Siguiendo la norma **ISO/IEC 26514**, redacta un breve **Manual de Despliegue** 
 Para el despliegue necesitaremos un editor de código y una carpeta con un nombre del proyecto dentro de esta carpeta crearemos un archivo llamado docker-compose.yml donde haremos distintos tipos de configuraciones.
 
 1. El fragmento de *docker-compose.yml* necesario.
-
+```
 services:
-
   odoo:
-
     image: odoo:latest
-
-    container\_name: odoo
-
+    container_name: odoo
     restart: unless-stopped
-
-    depends\_on:
-
-      \- db
-
+    depends_on:
+      - db
     ports:
-
-      \- "8200:8069"
-
+      - "8200:8069"
     volumes:
-
-      \- odoo-data:/var/lib/odoo
-
-      \- ./config:/etc/odoo
-
-      \- ./addons:/mnt/extra-addons
-
+      - odoo-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
     environment:
-
-      \- HOST=db
-
-      \- USER=odoo
-
-      \- PASSWORD=odoo
-
-    command: odoo \-d odoo \--db\_user=odoo \--db\_password=odoo \-i base
-
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    command: odoo -d odoo --db_user=odoo --db_password=odoo -i base
   db:
-
       image: postgres:16.0
-
-      container\_name: db
-
+      container_name: db
       restart: unless-stopped
-
       environment:
-
-        \- POSTGRES\_USER=odoo
-
-        \- POSTGRES\_PASSWORD=odoo
-
-        \- POSTGRES\_DB=odoo
-
-        \- PGDATA=/var/lib/postgresql/pgdata
-
+        - POSTGRES_USER=odoo
+        - POSTGRES_PASSWORD=odoo
+        - POSTGRES_DB=odoo
+        - PGDATA=/var/lib/postgresql/pgdata
       volumes:
-
-        \- db-data:/var/lib/postgresql/data
+        - db-data:/var/lib/postgresql/data
 
 volumes:
-
   odoo-data:
-
   db-data:
-
+```
 2. El comando para realizar un backup de la base de datos PostgreSQL.
 
 pg\_dump \-U odoo \-d odoo \> backup.sql 
