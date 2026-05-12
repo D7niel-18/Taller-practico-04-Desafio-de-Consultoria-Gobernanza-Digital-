@@ -47,6 +47,32 @@ Diseña la matriz de permisos para los siguientes roles, asegurando el **Princip
 * **Operario de Almacén:** Solo ve stock y albaranes de entrada/salida.  
 * **Contable:** Puede mirar facturas pero no puede modificar el stock.
 
+Descripción Detallada de Roles y Justificación
+
+**Administrador (Admin):**
+
+Permisos: Control Total (CRUD, Administración de seguridad).
+
+Justificación: Necesario para configurar, mantener y gestionar usuarios.
+
+**Editor / Gestor:**
+
+Permisos: Crear, Leer, Actualizar (CRU) en su área.
+
+Justificación: Permite modificar contenido operativo pero no borrar registros históricos (salvo configuración específica) ni gestionar usuarios.
+
+**Visor / Lector:**
+
+Permisos: Leer (R) únicamente.
+
+Justificación: Acceso necesario para consultar información sin riesgo de alterarla.
+
+**Usuario Final:**
+
+Permisos: Leer (R) en funciones limitadas y crear registros propios (ej. enviar formularios).
+
+Justificación: Funcionalidad operativa pura sin acceso a datos sensibles o de configuración.
+
 ## Bloque C: Documentación de Explotación (CE i)
 
 Siguiendo la norma **ISO/IEC 26514**, redacta un breve **Manual de Despliegue** para que el responsable de IT de la empresa pueda levantar el sistema en caso de caída. Debe incluir:
