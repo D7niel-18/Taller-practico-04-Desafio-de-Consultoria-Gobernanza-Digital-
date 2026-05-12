@@ -1,5 +1,5 @@
 - ## Profesor: Willman Acosta
-
+ 
 - ## Actividad: Desafío de Consultoría "Gobernanza Digital"
 
 - Alumnos: Daniel Jiménez Ramírez, Pepe Gil Cué, Manuel Parrilla
