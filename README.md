@@ -1,5 +1,5 @@
-- ## Actividad: Desafío de Consultoría "Gobernanza Digital"
-- ### Profesor Wilman Acosta | Lenguaje de Marca  
+- ### Actividad: Desafío de Consultoría "Gobernanza Digital"
+- ### Profesor: Wilman Acosta | Lenguaje de Marca  
 
 ## Bloque A: Análisis de Mercado y Selección (CE a, c)
 
