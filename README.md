@@ -10,11 +10,13 @@
 
 Justifica la elección basándote en el perfil de la empresa (25 empleados, presupuesto ajustado, necesidad de personalización en el etiquetado).
 
-Comparando la entrada de cada uno con sus respectivos precios, asegurando el descarte de SAP S/4HANA: Debido a que su coste de licencia para 25 usuarios ronda entre 90.000€
-
-Zona one no es mala opción, debido a que tiene un precio alrededor de 40€ al mes por empleado, en su plan flexible. El problema principal aquí es la necesaria modificación de de los módulos de fabricación, algo que zoho no permite sin la contribución de sus desarrolladores externos con acceso restringido a cualquier usuario.
-
-La mejor opción es Oddo community, es código abierto, sin coste de licencia, y con una comunidad enorme de módulos para el sector alimenticio permitiendo su personalización. Para 25 empleados es la mejor solución dentro de estas tres opciones.
+| Criterio | SAP S/4HANA | Zoho One | Odoo Community |
+| ----- | ----- | ----- | ----- |
+| Coste de licencia | \~90.000 € (25 usuarios) | \~40 €/usuario/mes (plan flexible) | 0 € (código abierto, LGPL) |
+| Personalización de módulos | Alta pero costosa | Limitada, requiere desarrolladores externos con acceso restringido | Total, comunidad enorme de módulos |
+| Adaptación sector alimenticio | Sí, pero sobredimensionado | Parcial | Sí, módulos específicos disponibles |
+| Adecuación para 25 empleados | No, pensado para grandes corporaciones | Aceptable | Óptima |
+| Veredicto | Descartado | Descartado | Seleccionado |
 
 **Cálculo de TCO:** Realiza una estimación a 3 años. No olvidéis incluir:
 
@@ -81,31 +83,31 @@ Para el despliegue necesitaremos un editor de código y una carpeta con un nombr
 
 1. El fragmento de *docker-compose.yml* necesario.
 ```
-services:
-  odoo:
-    image: odoo:latest
-    container_name: odoo
-    restart: unless-stopped
+services: # Define los contenedores
+  odoo: 
+    image: odoo:latest # Usa la imagen oficial de odoo
+    container_name: odoo # Nombre del contenedor
+    restart: unless-stopped # Esto hace que se reinicie automaticamente si se cae
     depends_on:
-      - db
+      - db # Espera a que el contenedor db este listo antes de arrancar
     ports:
-      - "8200:8069"
+      - "8200:8069" # 8069 es el interno de odoo y el 8200 es el del host
     volumes:
       - odoo-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
     environment:
-      - HOST=db
-      - USER=odoo
-      - PASSWORD=odoo
-    command: odoo -d odoo --db_user=odoo --db_password=odoo -i base
+      - HOST=db 
+      - USER=daw1
+      - PASSWORD=daw1
+    command: odoo -d odoo --db_user=daw1 --db_password=daw1 -i base 
   db:
       image: postgres:16.0
       container_name: db
       restart: unless-stopped
       environment:
-        - POSTGRES_USER=odoo
-        - POSTGRES_PASSWORD=odoo
+        - POSTGRES_USER=daw1
+        - POSTGRES_PASSWORD=daw1
         - POSTGRES_DB=odoo
         - PGDATA=/var/lib/postgresql/pgdata
       volumes:
@@ -117,6 +119,6 @@ volumes:
 ```
 2. El comando para realizar un backup de la base de datos PostgreSQL.
 
-pg\_dump \-U odoo \-d odoo \> backup.sql 
+pg\_dump \-U daw1 \-d daw1 \> backup.sql 
 
 Usaremos la utilidad pg\_dump con la opción \-U indicamos el usuario de la base de datos en este caso es odoo como se indica en el archivo de docker con \-d indicamos el nombre de la base de datos y con \> indicamos que el resultado lo meta en un archivo llamado backup.sql
